@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BeYourEyes</string>
+    <string name="uid">null</string>
+
+    <string name="appName">당신의 안(眼)식(食)</string>
+    <string name="function1">식품 촬영하기</string>
+    <string name="function2">오늘 섭취한 영양소 확인</string>
+    <string name="function3">내 질환정보 수정하기</string>
+
+</resources>
