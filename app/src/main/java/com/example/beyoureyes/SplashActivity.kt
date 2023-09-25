@@ -24,11 +24,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        Toast.makeText(
-            this@SplashActivity,
-            "Authentication start",
-            Toast.LENGTH_SHORT,
-        ).show()
+        //Toast.makeText( this@SplashActivity, "Authentication start", Toast.LENGTH_SHORT).show()
         // [START initialize_auth]
         // Initialize Firebase Auth
         auth = Firebase.auth
@@ -39,11 +35,7 @@ class SplashActivity : AppCompatActivity() {
     // [START on_start_check_user]
     public override fun onStart() {
 
-        Toast.makeText(
-            this@SplashActivity,
-            "Authentication onStart",
-            Toast.LENGTH_SHORT,
-        ).show()
+        //Toast.makeText( this@SplashActivity, "Authentication onStart", Toast.LENGTH_SHORT).show()
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
@@ -51,14 +43,19 @@ class SplashActivity : AppCompatActivity() {
         if (currentUser != null) {
             Toast.makeText(this@SplashActivity, "이미 가입한 유저", Toast.LENGTH_LONG).show()
             userId = currentUser.uid
+            val userIdClass = application as userId
+            userIdClass.userId = userId
+            Log.d("USERID : ", userId)
+            Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
             Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
         }
         else {
             Toast.makeText(this@SplashActivity, "가입안한 유저", Toast.LENGTH_LONG).show()
             signInAnonymously()
-            Handler().postDelayed({ startActivity(Intent(this, UserInfoRegisterActivity::class.java)) }, 3 * 1000)
+            Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
         }
         updateUI(currentUser)
+
     }
     // [END on_start_check_user]
 
@@ -67,14 +64,16 @@ class SplashActivity : AppCompatActivity() {
         auth.signInAnonymously()
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(
-                        this@SplashActivity,
-                        "Authentication successed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
+                    //Toast.makeText(this@SplashActivity, "Authentication successed.", Toast.LENGTH_SHORT).show()
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("SIGN", "signInAnonymously:success")
                     val user = auth.currentUser
+                    // 과연 절대로 null이 아닐까?
+                    userId = user!!.uid
+                    val userIdClass = application as userId
+                    userIdClass.userId = userId
+                    Log.d("USERID : ", userId)
+                    Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
