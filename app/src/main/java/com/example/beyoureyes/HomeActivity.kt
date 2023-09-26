@@ -41,19 +41,6 @@ class HomeActivity : AppCompatActivity() {
 
 
 
-            // 유저 정보 받아오기
-            db.collection("userInfo")
-                .get()
-                .addOnSuccessListener { result ->
-                    for (document in result) {
-                        Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
-                        Toast.makeText(this@HomeActivity, "${document.id} => ${document.data}", Toast.LENGTH_LONG).show()
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w("FIRESTORE : ", "Error getting documents.", exception)
-                }
-
         }
         else {
             Toast.makeText(this@HomeActivity, "userId not exist", Toast.LENGTH_LONG).show()
