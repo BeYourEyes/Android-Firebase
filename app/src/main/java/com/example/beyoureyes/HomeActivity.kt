@@ -11,6 +11,8 @@ import com.google.firebase.ktx.Firebase
 
 class HomeActivity : AppCompatActivity() {
 
+    var userInfoCheck : Boolean = false;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,11 +25,12 @@ class HomeActivity : AppCompatActivity() {
             // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
             val db = Firebase.firestore
             // 유저 정보 보내기
+            /*
             val userInfo = hashMapOf(
                 "userID" to userId,
                 "userAge" to 60,
                 "userDisease" to listOf("diabetes"),
-                "userAllergic" to listOf("wheat", "soy", "beef")
+                "userAllergic" to listOf("wheat", "soy")
             )
 
             db.collection("userInfo")
@@ -39,7 +42,23 @@ class HomeActivity : AppCompatActivity() {
                     Log.w("FIRESTORE : ", "Error adding document", e)
                 }
 
+             */
 
+            // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
+            db.collection("userInfo")
+                .whereEqualTo("userID", userId)
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        Log.d("FIRESTORE : ", "getDataSuccess")
+                        userInfoCheck = true
+
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("FIRESTORE : ", "Error getting documents.", exception)
+                    userInfoCheck = false
+                }
 
         }
         else {
@@ -52,10 +71,19 @@ class HomeActivity : AppCompatActivity() {
         val exitButton : Button = findViewById(R.id.exitButton)
         val myProfileButton : Button = findViewById(R.id.myProfileButton)
 
-        // 내 질환정보 수정하기 클릭 시
+        // 내 질환정보 수정하기 클릭 시...정보가 없으면 정보 등록 페이지로 넘어가도록 함
         myProfileButton.setOnClickListener {
-            val intent = Intent(this, UserInfoRegisterActivity::class.java)
-            startActivity(intent)
+            if (userInfoCheck) {
+                val intent = Intent(this, SplashActivity::class.java)
+                Toast.makeText(this@HomeActivity, "TRUE", Toast.LENGTH_LONG).show()
+                startActivity(intent)
+            }
+            else {
+                val intent = Intent(this, UserInfoRegisterActivity::class.java)
+                Toast.makeText(this@HomeActivity, "FALSE", Toast.LENGTH_LONG).show()
+                startActivity(intent)
+            }
+
         }
 
         

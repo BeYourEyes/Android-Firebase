@@ -46,7 +46,7 @@ class SplashActivity : AppCompatActivity() {
             val userIdClass = application as userId
             userIdClass.userId = userId
             Log.d("USERID : ", userId)
-            Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
+            //Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
             Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
         }
         else {

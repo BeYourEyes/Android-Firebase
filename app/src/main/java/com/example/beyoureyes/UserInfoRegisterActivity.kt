@@ -22,7 +22,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
 
         // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
         db.collection("userInfo")
-            //.whereEqualTo("userId", userId)
+            .whereEqualTo("userID", userId)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
