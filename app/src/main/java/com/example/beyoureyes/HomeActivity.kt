@@ -75,15 +75,14 @@ class HomeActivity : AppCompatActivity() {
         myProfileButton.setOnClickListener {
             if (userInfoCheck) {
                 val intent = Intent(this, SplashActivity::class.java)
-                Toast.makeText(this@HomeActivity, "TRUE", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@HomeActivity, "TRUE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
             }
             else {
                 val intent = Intent(this, UserInfoRegisterActivity::class.java)
-                Toast.makeText(this@HomeActivity, "FALSE", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@HomeActivity, "FALSE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
             }
-
         }
 
         
