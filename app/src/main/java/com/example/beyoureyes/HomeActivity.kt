@@ -11,7 +11,7 @@ import com.google.firebase.ktx.Firebase
 
 class HomeActivity : AppCompatActivity() {
 
-    var userInfoCheck : Boolean = false;
+    private var userInfoCheck : Boolean = false;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +74,7 @@ class HomeActivity : AppCompatActivity() {
         // 내 질환정보 수정하기 클릭 시...정보가 없으면 정보 등록 페이지로 넘어가도록 함
         myProfileButton.setOnClickListener {
             if (userInfoCheck) {
-                val intent = Intent(this, SplashActivity::class.java)
+                val intent = Intent(this, UserInfoActivity::class.java)
                 //Toast.makeText(this@HomeActivity, "TRUE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
             }

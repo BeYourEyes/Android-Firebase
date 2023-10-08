@@ -1,9 +1,317 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="32sp"
     tools:context=".UserInfoActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+  <TextView
+      android:id="@+id/userInfoRegisterTitle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8sp"
+      android:fontFamily="@font/pretendard700"
+      android:text="@string/function3"
+      android:textAlignment="center"
+      android:textColor="@color/black"
+      android:textSize="30sp"
+      android:textStyle="bold" />
+
+  <TextView
+      android:id="@+id/ageText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="34sp"
+      android:fontFamily="@font/pretendard500"
+      android:text="나이"
+      android:textColor="@color/black"
+      android:textSize="24sp" />
+
+  <TextView
+      android:id="@+id/infoAge"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="128sp"
+      android:layout_marginTop="12sp"
+      android:layout_marginEnd="128sp"
+      android:minHeight="48dp"
+      android:text="세"
+      android:textAlignment="center"
+      android:textSize="24sp" />
+
+  <TextView
+      android:id="@+id/diseaseText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12sp"
+      android:fontFamily="@font/pretendard500"
+      android:text="질환 정보"
+      android:textColor="@color/black"
+      android:textSize="24sp" />
+
+
+  <com.google.android.material.chip.ChipGroup
+      android:id="@+id/diseaseChipGroup"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12sp"
+      android:layout_gravity="center"
+      app:chipSpacingHorizontal="12dp"
+      app:singleLine="true">
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="고혈압"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="고지혈증"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="당뇨"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+  </com.google.android.material.chip.ChipGroup>
+
+  <TextView
+      android:id="@+id/allergicText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12sp"
+      android:fontFamily="@font/pretendard500"
+      android:text="알레르기 정보"
+      android:textColor="@color/black"
+      android:textSize="24sp" />
+
+  <com.google.android.material.chip.ChipGroup
+      android:id="@+id/allergyChipGroup"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12sp"
+      android:layout_gravity="center"
+      app:chipSpacingHorizontal="12dp"
+      app:singleLine="false">
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/pretendard500"
+        android:text="메밀"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="밀"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="대두"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="호두"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="땅콩"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="복숭아"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="토마토"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="돼지고기"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="난류"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="우유"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="닭고기"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="쇠고기"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="새우"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="고등어"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="홍합"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="전복"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="굴"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="조개류"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="게"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="오징어"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="아황산"
+        android:textSize="16sp"
+        app:chipBackgroundColor="@color/chip" />
+  </com.google.android.material.chip.ChipGroup>
+
+
+  <Button
+      android:id="@+id/userInfoRegisterButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="100sp"
+      android:layout_marginTop="12sp"
+      android:layout_marginRight="100sp"
+      android:layout_marginBottom="32dp"
+      android:backgroundTint="@color/black"
+      android:fontFamily="@font/pretendard700"
+      android:text="수정하기" />
+
+
+</LinearLayout>

@@ -14,7 +14,7 @@
         android:id="@+id/userInfoRegisterTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24sp"
+        android:layout_marginTop="8sp"
         android:fontFamily="@font/pretendard700"
         android:text="@string/userInfoRegister"
         android:textAlignment="center"
@@ -26,7 +26,7 @@
         android:id="@+id/ageText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12sp"
+        android:layout_marginTop="34sp"
         android:fontFamily="@font/pretendard500"
         android:text="나이"
         android:textColor="@color/black"
@@ -117,6 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/pretendard500"
             android:text="메밀"
             android:textSize="16sp"
             app:chipBackgroundColor="@color/chip" />
@@ -307,9 +308,11 @@
         android:id="@+id/userInfoRegisterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12sp"
         android:layout_marginLeft="100sp"
+        android:layout_marginTop="12sp"
         android:layout_marginRight="100sp"
         android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/pretendard700"
         android:text="등록하기" />
 </LinearLayout>

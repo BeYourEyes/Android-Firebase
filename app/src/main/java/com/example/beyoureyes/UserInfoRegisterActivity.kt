@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
+import android.content.Intent
 
 
 val diseaseList : List<String> = listOf("highPressure", "hyperlipidemia", "diabetes")
@@ -27,8 +26,6 @@ class UserInfoRegisterActivity : AppCompatActivity() {
 
         val age : EditText = findViewById(R.id.editAge)
 
-        val chipGroupDisease = findViewById<ChipGroup>(R.id.diseaseChipGroup)
-        val chipGroupAllergy = findViewById<ChipGroup>(R.id.allergyChipGroup)
         val chip0 = findViewById<Chip>(R.id.chip0)
         val chip1 = findViewById<Chip>(R.id.chip1)
         val chip2 = findViewById<Chip>(R.id.chip2)
@@ -66,10 +63,10 @@ class UserInfoRegisterActivity : AppCompatActivity() {
         for (i in diseaseChips.indices) {
             diseaseChips[i].setOnClickListener { view ->
                 val chip = view as Chip
-                val chipText = chip.text.toString()
 
+                //val chipText = chip.text.toString()
                 // Toast 메시지 표시
-                Toast.makeText(this@UserInfoRegisterActivity, chipText, Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@UserInfoRegisterActivity, chipText, Toast.LENGTH_LONG).show()
 
                 // clickedDisease 리스트 업데이트
                 val index = diseaseChips.indexOf(chip)
@@ -92,8 +89,8 @@ class UserInfoRegisterActivity : AppCompatActivity() {
         for (i in allergyChips.indices) {
             allergyChips[i].setOnClickListener { view ->
                 val chip = view as Chip
-                val chipText = chip.text.toString()
 
+                //val chipText = chip.text.toString()
                 //Toast.makeText(this@UserInfoRegisterActivity, chipText, Toast.LENGTH_LONG).show()
 
 
@@ -120,58 +117,48 @@ class UserInfoRegisterActivity : AppCompatActivity() {
         val userId = userIdClass.userId
 
         userInfoRegisterButton.setOnClickListener {
-            for( index in clickedDisease.indices ) {
-                if(clickedDisease[index])
-                    userDiseaseList.add(diseaseList[index])
+            if(age.text.toString() == ""){
+                Toast.makeText(this@UserInfoRegisterActivity, "나이를 입력해주세요!", Toast.LENGTH_LONG).show()
             }
-            for ( index in clickedAllergic.indices ) {
-                if(clickedAllergic[index])
-                    userAllergyList.add(allergyList[index])
+            else {
+                for( index in clickedDisease.indices ) {
+                    if(clickedDisease[index])
+                        userDiseaseList.add(diseaseList[index])
+                }
+                for ( index in clickedAllergic.indices ) {
+                    if(clickedAllergic[index])
+                        userAllergyList.add(allergyList[index])
+                }
+
+                Log.d("LIST: ", userDiseaseList.toString())
+                Log.d("LIST: ", userAllergyList.toString())
+
+
+                val db = Firebase.firestore
+                //유저 정보 보내기
+                val userInfo = hashMapOf(
+                    "userID" to userId,
+                    "userAge" to age.text.toString().toInt(),
+                    "userDisease" to userDiseaseList,
+                    "userAllergic" to userAllergyList
+                )
+
+                db.collection("userInfo")
+                    .add(userInfo)
+                    .addOnSuccessListener { documentReference ->
+                        Log.d("FIRESTORE : ", "DocumentSnapshot added with ID: ${documentReference.id}")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("FIRESTORE : ", "Error adding document", e)
+                    }
+                userDiseaseList.clear()
+                userAllergyList.clear()
+
+                val intent = Intent(this, UserInfoActivity::class.java)
+                startActivity(intent)
+
             }
-
-            Log.d("LIST: ", userDiseaseList.toString())
-            Log.d("LIST: ", userAllergyList.toString())
-
-
-            val db = Firebase.firestore
-            //유저 정보 보내기
-            val userInfo = hashMapOf(
-                "userID" to userId,
-                "userAge" to age.text.toString().toInt(),
-                "userDisease" to userDiseaseList,
-                "userAllergic" to userAllergyList
-            )
-
-            db.collection("userInfo")
-                .add(userInfo)
-                .addOnSuccessListener { documentReference ->
-                    Log.d("FIRESTORE : ", "DocumentSnapshot added with ID: ${documentReference.id}")
-                }
-                .addOnFailureListener { e ->
-                    Log.w("FIRESTORE : ", "Error adding document", e)
-                }
         }
-
-
-
-        /*
-        // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
-        db.collection("userInfo")
-            .whereEqualTo("userID", userId)
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
-                    Toast.makeText(this@UserInfoRegisterActivity, "${document.id} => ${document.data}", Toast.LENGTH_LONG).show()
-                    testText.setText("${document.id} => ${document.data}")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("FIRESTORE : ", "Error getting documents.", exception)
-            }
-
-         */
-
 
     }
 }
