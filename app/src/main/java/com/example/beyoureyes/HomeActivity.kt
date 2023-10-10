@@ -85,6 +85,11 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
+        filmButton.setOnClickListener {
+            val intent = Intent(this, FilmCautionActivity::class.java)
+            startActivity(intent)
+        }
+
         
 
 
