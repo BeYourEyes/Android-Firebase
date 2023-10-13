@@ -15,11 +15,12 @@ import android.content.Intent
 
 val diseaseList : List<String> = listOf("highPressure", "hyperlipidemia", "diabetes")
 val allergyList : List<String> = listOf("buckwheat", "wheat", "soy", "walnut", "peanut", "peach", "tomato", "pork", "egg", "milk", "chicken", "beef", "shrimp", "mackerel", "mussel", "abalone", "oyster", "shellfish", "crab", "squid", "sulfurousAcid")
-val userDiseaseList : ArrayList<String> = arrayListOf()
-val userAllergyList : ArrayList<String> = arrayListOf()
+
 class UserInfoRegisterActivity : AppCompatActivity() {
     private var clickedDisease : MutableList<Boolean> = mutableListOf(false, false, false)
     private var clickedAllergic : MutableList<Boolean> = MutableList(21) { false }
+    private val userDiseaseList : ArrayList<String> = arrayListOf()
+    private val userAllergyList : ArrayList<String> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info_register)

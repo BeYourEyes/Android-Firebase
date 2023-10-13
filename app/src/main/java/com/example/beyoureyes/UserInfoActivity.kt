@@ -10,11 +10,13 @@ import android.widget.Toast
 import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-
 class UserInfoActivity : AppCompatActivity() {
+    private val userDiseaseList : ArrayList<String> = arrayListOf()
+    private val userAllergyList : ArrayList<String> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info)
+
 
         val infoAge = findViewById<TextView>(R.id.infoAge)
 
@@ -62,10 +64,16 @@ class UserInfoActivity : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
-                    Toast.makeText(this@UserInfoActivity, "${document.id} => ${document.data}", Toast.LENGTH_LONG).show()
-                    if(document.id.equals("userAge")) {
-                        infoAge.text = document.data.toString()
-                    }
+
+                    infoAge.text = document.data.get("userAge").toString() + "세"
+                    val userDisease = document.data.get("userDisease") as ArrayList<String>
+                    val userAllergic = document.data.get("userAllergic") as ArrayList<String>
+                    if (userDisease != null)
+                        userDiseaseList.addAll(userDisease)
+                    Log.d("FIRESTORE", userDiseaseList.toString())
+                    if (userAllergic != null)
+                        userAllergyList.addAll(userAllergic)
+                    Log.d("FIRESTORE", userAllergic.toString())
                 }
             }
             .addOnFailureListener { exception ->
