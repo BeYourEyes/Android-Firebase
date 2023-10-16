@@ -13,34 +13,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8sp"
-        android:fontFamily="@font/pretendard700"
+        android:fontFamily="@font/pretendard800"
         android:text="촬영 시 주의 사항"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24sp"
-        android:fontFamily="@font/pretendard500"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:background="@drawable/edge"
-        android:padding="20sp"
-        android:text = "@string/caution">
-    </TextView>
+        android:layout_height="0dp"
+        android:layout_marginTop="32sp"
+        android:layout_weight="1"
+        android:padding="16sp"
+        android:background="@drawable/edge">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24sp"
+            android:fontFamily="@font/pretendard500"
+            android:padding="16sp"
+            android:text="@string/caution"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+    </ScrollView>
 
     <Button
         android:id="@+id/filmStartButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100sp"
-        android:layout_marginTop="12sp"
-        android:layout_marginRight="100sp"
-        android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/black"
+        android:layout_width="200sp"
+        android:layout_height="64sp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/highlight"
         android:fontFamily="@font/pretendard700"
-        android:text="촬영 시작하기" />
+        android:text="촬영 시작하기"
+        android:textSize="20sp" />
 </LinearLayout>

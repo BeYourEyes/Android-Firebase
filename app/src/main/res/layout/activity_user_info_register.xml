@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8sp"
-        android:fontFamily="@font/pretendard700"
+        android:fontFamily="@font/pretendard800"
         android:text="@string/userInfoRegister"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="34sp"
-        android:fontFamily="@font/pretendard500"
+        android:fontFamily="@font/pretendard700"
         android:text="나이"
         android:textColor="@color/black"
         android:textSize="24sp" />
@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12sp"
-        android:fontFamily="@font/pretendard500"
+        android:fontFamily="@font/pretendard700"
         android:text="질환 정보"
         android:textColor="@color/black"
         android:textSize="24sp" />
@@ -98,7 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12sp"
-        android:fontFamily="@font/pretendard500"
+        android:fontFamily="@font/pretendard700"
         android:text="알레르기 정보"
         android:textColor="@color/black"
         android:textSize="24sp" />

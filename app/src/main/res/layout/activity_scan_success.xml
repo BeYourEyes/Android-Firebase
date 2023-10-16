@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="@font/pretendard700"
+        android:fontFamily="@font/pretendard800"
         android:text="영양 정보 촬영하기"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -22,7 +22,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -159,21 +160,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="64sp"
             android:layout_weight="1"
-            android:text="Button" />
+            android:layout_marginEnd="6sp"
+            android:backgroundTint="@color/highlight"
+            android:fontFamily="@font/pretendard700"
+            android:text="먹을게요!"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="64sp"
             android:layout_weight="1"
-            android:text="Button" />
+            android:layout_marginStart="6sp"
+            android:backgroundTint="@color/highlight"
+            android:fontFamily="@font/pretendard700"
+            android:text="돌아가기"
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>
