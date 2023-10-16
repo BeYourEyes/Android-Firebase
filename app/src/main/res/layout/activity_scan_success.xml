@@ -1,14 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScanSuccessActivity">
+    android:orientation="vertical"
+    android:padding="32sp"
+    tools:context=".ScanSuccessActivity"
+    tools:ignore="SpeakableTextPresentCheck">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/pretendard700"
+        android:text="영양 정보 촬영하기"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="36sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="36sp"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/highlight"
+                        android:fontFamily="@font/pretendard700"
+                        android:text="총 칼로리는"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/white"
+                        android:textSize="32sp" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4sp"
+                        android:background="@color/highlight"
+                        android:fontFamily="@font/pretendard700"
+                        android:text="500kcal"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/white"
+                        android:textSize="32sp" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4sp"
+                        android:fontFamily="@font/pretendard700"
+                        android:text="이에요"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/highlight"
+                        android:textSize="32sp" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="36sp"
+                        android:fontFamily="@font/pretendard500"
+                        android:text="1회당 100kcal"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/highlight" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/pretendard700"
+                android:text="알러지 정보"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="32sp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/allergyChipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12sp"
+                app:chipSpacingHorizontal="12dp"
+                app:singleLine="false">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard700"
+                    android:includeFontPadding="false"
+                    android:text="새우"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:chipBackgroundColor="@color/highlight"
+                    app:chipEndPadding="10sp"
+                    app:chipStartPadding="10sp" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="72sp"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/pretendard700"
+                android:text="질환 별 정보 보기"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16sp"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/pretendard700"
+                android:text="음성으로 듣기"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
+    </LinearLayout>
+</LinearLayout>

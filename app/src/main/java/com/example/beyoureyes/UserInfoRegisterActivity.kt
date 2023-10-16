@@ -13,8 +13,8 @@ import com.google.android.material.chip.Chip
 import android.content.Intent
 
 
-val diseaseList : List<String> = listOf("highPressure", "hyperlipidemia", "diabetes")
-val allergyList : List<String> = listOf("buckwheat", "wheat", "soy", "walnut", "peanut", "peach", "tomato", "pork", "egg", "milk", "chicken", "beef", "shrimp", "mackerel", "mussel", "abalone", "oyster", "shellfish", "crab", "squid", "sulfurousAcid")
+val diseaseList : List<String> = listOf("고혈압", "고지혈증", "당뇨")
+val allergyList : List<String> = listOf("메밀", "밀", "콩", "호두", "땅콩", "복숭아", "토마토", "돼지고기", "난류", "우유", "닭고기", "쇠고기", "새우", "고등어", "홍합", "전복", "굴", "조개류", "게", "오징어", "아황산")
 
 class UserInfoRegisterActivity : AppCompatActivity() {
     private var clickedDisease : MutableList<Boolean> = mutableListOf(false, false, false)
