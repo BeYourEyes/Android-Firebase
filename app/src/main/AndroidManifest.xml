@@ -16,6 +16,9 @@
         android:theme="@style/Theme.BeYourEyes"
         tools:targetApi="31">
         <activity
+            android:name=".TodayIntakeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ScanSuccessActivity"
             android:exported="false" />
         <activity

@@ -67,12 +67,12 @@ class HomeActivity : AppCompatActivity() {
 
 
         val filmButton : Button = findViewById(R.id.filmButton)
-        val todayNutritionButton : Button = findViewById(R.id.todayNutritionButton)
+        val todayIntakeButton : Button = findViewById(R.id.todayNutritionButton)
         val exitButton : Button = findViewById(R.id.exitButton)
-        val myProfileButton : Button = findViewById(R.id.myProfileButton)
+        val userInfoButton : Button = findViewById(R.id.myProfileButton)
 
         // 내 질환정보 수정하기 클릭 시...정보가 없으면 정보 등록 페이지로 넘어가도록 함
-        myProfileButton.setOnClickListener {
+        userInfoButton.setOnClickListener {
             if (userInfoCheck) {
                 val intent = Intent(this, UserInfoActivity::class.java)
                 //Toast.makeText(this@HomeActivity, "TRUE", Toast.LENGTH_LONG).show()
@@ -87,6 +87,11 @@ class HomeActivity : AppCompatActivity() {
 
         filmButton.setOnClickListener {
             val intent = Intent(this, FilmCautionActivity::class.java)
+            startActivity(intent)
+        }
+        
+        todayIntakeButton.setOnClickListener {
+            val intent = Intent(this, TodayIntakeActivity::class.java)
             startActivity(intent)
         }
 

@@ -12,12 +12,12 @@
         android:id="@+id/filmCautionTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8sp"
+
         android:fontFamily="@font/pretendard800"
         android:text="촬영 시 주의 사항"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="36sp"
         android:textStyle="bold" />
 
     <ScrollView
@@ -39,13 +39,15 @@
             android:textSize="24sp" />
     </ScrollView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/filmStartButton"
         android:layout_width="200sp"
         android:layout_height="64sp"
+        android:layout_marginTop="24sp"
         android:layout_gravity="center"
-        android:backgroundTint="@color/highlight"
+        android:background="@drawable/button_highlight"
         android:fontFamily="@font/pretendard700"
-        android:text="촬영 시작하기"
-        android:textSize="20sp" />
+        android:text="촬영 시작하기!"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
 </LinearLayout>
