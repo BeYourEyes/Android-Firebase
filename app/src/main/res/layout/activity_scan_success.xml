@@ -35,18 +35,18 @@
                 android:layout_height="200sp"
                 android:layout_marginTop="36sp"
                 android:orientation="horizontal"
-                android:weightSum="5">
+                android:weightSum="7">
 
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/pieChartScanSuccess"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
                     android:gravity="end"
                     android:orientation="vertical">
 
@@ -62,7 +62,7 @@
                         android:textSize="32sp" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/textViewKcalScanSuccess"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8sp"
@@ -86,7 +86,7 @@
 
                     <TextView
                         android:id="@+id/textView8"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24sp"
                         android:fontFamily="@font/pretendard500"
@@ -132,24 +132,24 @@
                     app:chipStartPadding="10sp" />
             </com.google.android.material.chip.ChipGroup>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button"
                 android:layout_width="200sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="72sp"
-                android:backgroundTint="@color/black"
+                android:background="@drawable/button_default"
                 android:fontFamily="@font/pretendard700"
                 android:text="질환 별 정보 보기"
                 android:textSize="20sp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonVoiceScanSuccess"
                 android:layout_width="200sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16sp"
-                android:backgroundTint="@color/black"
+                android:background="@drawable/button_default"
                 android:fontFamily="@font/pretendard700"
                 android:text="음성으로 듣기"
                 android:textSize="20sp" />
