@@ -51,7 +51,7 @@ class ScanSuccessActivity : AppCompatActivity() {
         entries.add(PieEntry(508f, "지방"))
         entries.add(PieEntry(270f, "기타"))
 
-        // add a lot of colors
+        // 색상 추가하기
         val colorsItems = ArrayList<Int>()
         for (c in ColorTemplate.VORDIPLOM_COLORS) colorsItems.add(c)
         for (c in ColorTemplate.JOYFUL_COLORS) colorsItems.add(c)
@@ -60,11 +60,20 @@ class ScanSuccessActivity : AppCompatActivity() {
         for (c in ColorTemplate.PASTEL_COLORS) colorsItems.add(c)
         colorsItems.add(ColorTemplate.getHoloBlue())
 
+        // 색상 리스트를 만들고 색상을 추가
+        val colorsList = ArrayList<Int>()
+        colorsList.add(Color.RED)
+        colorsList.add(Color.WHITE)
+        colorsList.add(Color.BLUE)
+
         val pieDataSet = PieDataSet(entries, "")
         pieDataSet.apply {
+            // Piechart 속 파이들 색상 설청
             colors = colorsItems
-            valueTextColor = Color.BLACK
-            valueTextSize = 16f
+            // 값에 대한 색상 설정
+            valueTextColor = Color.WHITE
+            // 값에 대한 크기 설정
+            valueTextSize = 10f
         }
 
         val pieData = PieData(pieDataSet)
@@ -75,13 +84,14 @@ class ScanSuccessActivity : AppCompatActivity() {
             description.isEnabled = false // 차트 설명 비활성화
             isRotationEnabled = false // 차트 회전 활성화
             legend.isEnabled = false // 하단 설명 비활성화
-            isDrawHoleEnabled = false // 가운데 빈 구멍 비활성화
+            isDrawHoleEnabled = true // 가운데 빈 구멍 활성화 비활성화 여부
+            holeRadius = 20f
+            transparentCircleRadius = 30f
             centerText = null // 가운데 텍스트 없앰
             setEntryLabelColor(Color.BLACK) // label 색상
             animateY(1400, Easing.EaseInOutQuad) // 1.4초 동안 애니메이션 설정
             animate()
         }
-        // 알러지
 
         // 질환 별 정보 보기 -> 내 질환정보 불러오고, 그에 따른 유의 사항 보여주기
         // 음성으로 듣기 버튼 -> 해당 정보 읽어주기
