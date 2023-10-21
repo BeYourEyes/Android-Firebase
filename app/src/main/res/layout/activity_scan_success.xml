@@ -98,7 +98,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textViewKcalPerTimeScanSuccess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24sp"
@@ -116,20 +116,6 @@
                 android:layout_marginTop="12sp"
                 app:chipSpacingHorizontal="12dp"
                 app:singleLine="false">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendard700"
-                    android:includeFontPadding="false"
-                    android:text="새우"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:chipBackgroundColor="@color/highlight"
-                    app:chipEndPadding="10sp"
-                    app:chipStartPadding="10sp" />
             </com.google.android.material.chip.ChipGroup>
 
             <androidx.appcompat.widget.AppCompatButton
