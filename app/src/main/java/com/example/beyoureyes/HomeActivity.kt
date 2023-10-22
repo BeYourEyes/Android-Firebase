@@ -42,21 +42,6 @@ class HomeActivity : AppCompatActivity() {
 
              */
 
-
-        }
-        else {
-            Toast.makeText(this@HomeActivity, "userId not exist", Toast.LENGTH_LONG).show()
-        }
-
-
-        val filmButton : Button = findViewById(R.id.filmButton)
-        val todayIntakeButton : Button = findViewById(R.id.todayNutritionButton)
-        val exitButton : Button = findViewById(R.id.exitButton)
-        val userInfoButton : Button = findViewById(R.id.myProfileButton)
-
-        // 내 질환정보 수정하기 클릭 시...정보가 없으면 정보 등록 페이지로 넘어가도록 함
-        userInfoButton.setOnClickListener {
-
             // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
             val db = Firebase.firestore
             // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
@@ -76,6 +61,19 @@ class HomeActivity : AppCompatActivity() {
                 }
 
 
+        }
+        else {
+            Toast.makeText(this@HomeActivity, "userId not exist", Toast.LENGTH_LONG).show()
+        }
+
+
+        val filmButton : Button = findViewById(R.id.filmButton)
+        val todayIntakeButton : Button = findViewById(R.id.todayNutritionButton)
+        val exitButton : Button = findViewById(R.id.exitButton)
+        val userInfoButton : Button = findViewById(R.id.myProfileButton)
+
+        // 내 질환정보 수정하기 클릭 시...정보가 없으면 정보 등록 페이지로 넘어가도록 함
+        userInfoButton.setOnClickListener {
             if (userInfoCheck == 1) {
                 val intent = Intent(this, UserInfoActivity::class.java)
                 //Toast.makeText(this@HomeActivity, "TRUE", Toast.LENGTH_LONG).show()
