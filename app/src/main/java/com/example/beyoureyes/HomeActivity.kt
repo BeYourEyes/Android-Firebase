@@ -11,7 +11,7 @@ import com.google.firebase.ktx.Firebase
 
 class HomeActivity : AppCompatActivity() {
 
-    private var userInfoCheck : Boolean = false;
+    private var userInfoCheck : Int = 0;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +22,6 @@ class HomeActivity : AppCompatActivity() {
         val userIdClass = application as userId
         val userId = userIdClass.userId
         if (userId != null) {
-            // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
-            val db = Firebase.firestore
             // 유저 정보 보내기
             /*
             val userInfo = hashMapOf(
@@ -44,21 +42,6 @@ class HomeActivity : AppCompatActivity() {
 
              */
 
-            // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
-            db.collection("userInfo")
-                .whereEqualTo("userID", userId)
-                .get()
-                .addOnSuccessListener { result ->
-                    for (document in result) {
-                        Log.d("FIRESTORE : ", "getDataSuccess")
-                        userInfoCheck = true
-
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w("FIRESTORE : ", "Error getting documents.", exception)
-                    userInfoCheck = false
-                }
 
         }
         else {
@@ -73,15 +56,38 @@ class HomeActivity : AppCompatActivity() {
 
         // 내 질환정보 수정하기 클릭 시...정보가 없으면 정보 등록 페이지로 넘어가도록 함
         userInfoButton.setOnClickListener {
-            if (userInfoCheck) {
+
+            // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
+            val db = Firebase.firestore
+            // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
+            db.collection("userInfo")
+                .whereEqualTo("userID", userId)
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        Log.d("FIRESTORE : ", "getDataSuccess")
+                        userInfoCheck = 1
+
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("FIRESTORE : ", "Error getting documents.", exception)
+                    userInfoCheck = -1
+                }
+
+
+            if (userInfoCheck == 1) {
                 val intent = Intent(this, UserInfoActivity::class.java)
                 //Toast.makeText(this@HomeActivity, "TRUE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
             }
-            else {
+            else if (userInfoCheck == -1){
                 val intent = Intent(this, UserInfoRegisterActivity::class.java)
                 //Toast.makeText(this@HomeActivity, "FALSE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
+            }
+            else {
+                Toast.makeText(this@HomeActivity, "network connection failed. try again", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -94,9 +100,6 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, TodayIntakeActivity::class.java)
             startActivity(intent)
         }
-
-        
-
 
     }
 }
