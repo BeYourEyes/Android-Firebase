@@ -33,9 +33,10 @@
 
       <TextView
           android:id="@+id/ageText"
-          android:layout_width="match_parent"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="34sp"
+          android:layout_gravity="center"
           android:fontFamily="@font/pretendard700"
           android:text="나이"
           android:textColor="@color/black"
@@ -43,11 +44,10 @@
 
       <TextView
           android:id="@+id/infoAge"
-          android:layout_width="match_parent"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginStart="128sp"
+          android:layout_gravity="center"
           android:layout_marginTop="12sp"
-          android:layout_marginEnd="128sp"
           android:fontFamily="@font/pretendard500"
           android:minHeight="48dp"
           android:textAlignment="center"
@@ -56,8 +56,9 @@
 
       <TextView
           android:id="@+id/diseaseText"
-          android:layout_width="match_parent"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:layout_gravity="center"
           android:layout_marginTop="12sp"
           android:fontFamily="@font/pretendard700"
           android:text="질환 정보"
@@ -66,7 +67,7 @@
 
       <com.google.android.material.chip.ChipGroup
           android:id="@+id/diseaseChipGroup"
-          android:layout_width="match_parent"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:layout_marginTop="12sp"
@@ -77,8 +78,9 @@
 
       <TextView
           android:id="@+id/allergicText"
-          android:layout_width="match_parent"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:layout_gravity="center"
           android:layout_marginTop="12sp"
           android:fontFamily="@font/pretendard700"
           android:text="알레르기 정보"
@@ -87,7 +89,7 @@
 
       <com.google.android.material.chip.ChipGroup
           android:id="@+id/allergyChipGroup"
-          android:layout_width="match_parent"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:layout_marginTop="12sp"

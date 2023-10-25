@@ -41,7 +41,7 @@ class SplashActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
 
         if (currentUser != null) {
-            Toast.makeText(this@SplashActivity, "이미 가입한 유저", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this@SplashActivity, "이미 가입한 유저", Toast.LENGTH_LONG).show()
             userId = currentUser.uid
             val userIdClass = application as userId
             userIdClass.userId = userId
@@ -50,7 +50,7 @@ class SplashActivity : AppCompatActivity() {
             Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
         }
         else {
-            Toast.makeText(this@SplashActivity, "가입안한 유저", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this@SplashActivity, "가입안한 유저", Toast.LENGTH_LONG).show()
             signInAnonymously()
             Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
         }
@@ -73,16 +73,12 @@ class SplashActivity : AppCompatActivity() {
                     val userIdClass = application as userId
                     userIdClass.userId = userId
                     Log.d("USERID : ", userId)
-                    Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("SIGN", "signInAnonymously:failure", task.exception)
-                    Toast.makeText(
-                        this@SplashActivity,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
+                    //Toast.makeText( this@SplashActivity, "Authentication failed.", Toast.LENGTH_SHORT).show()
                     updateUI(null)
                 }
             }
@@ -101,11 +97,7 @@ class SplashActivity : AppCompatActivity() {
                     updateUI(user)
                 } else {
                     Log.w(TAG, "linkWithCredential:failure", task.exception)
-                    Toast.makeText(
-                        baseContext,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
+                    // Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
                     updateUI(null)
                 }
             }
