@@ -63,6 +63,7 @@ class HomeActivity : AppCompatActivity() {
 
         }
         else {
+            Log.w("FIRESTORE : ", "Error getting documents.")
             Toast.makeText(this@HomeActivity, "userId not exist", Toast.LENGTH_LONG).show()
         }
 
@@ -86,6 +87,7 @@ class HomeActivity : AppCompatActivity() {
             }
             else {
                 Toast.makeText(this@HomeActivity, "network connection failed. try again", Toast.LENGTH_LONG).show()
+                Log.d("FIRESTORE : ", userInfoCheck.toString())
             }
         }
 
