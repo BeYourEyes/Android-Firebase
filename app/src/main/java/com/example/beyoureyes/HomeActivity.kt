@@ -88,6 +88,9 @@ class HomeActivity : AppCompatActivity() {
             else {
                 Toast.makeText(this@HomeActivity, "network connection failed. try again", Toast.LENGTH_LONG).show()
                 Log.d("FIRESTORE : ", userInfoCheck.toString())
+                val intent = Intent(this, UserInfoRegisterActivity::class.java)
+                //Toast.makeText(this@HomeActivity, "FALSE", Toast.LENGTH_LONG).show()
+                startActivity(intent)
             }
         }
 
