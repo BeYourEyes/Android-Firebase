@@ -21,6 +21,9 @@ class UserInfoRegisterActivity : AppCompatActivity() {
     private var clickedAllergic : MutableList<Boolean> = MutableList(21) { false }
     private val userDiseaseList : ArrayList<String> = arrayListOf()
     private val userAllergyList : ArrayList<String> = arrayListOf()
+
+    private var userInfoCheck : Int = 0;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info_register)
@@ -61,6 +64,37 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                                     chip16, chip17, chip18, chip19, chip20)
 
 
+        val userIdClass: userId = application as userId
+        val userId = userIdClass.userId
+
+        // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
+        val db = Firebase.firestore
+        // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
+        db.collection("userInfo")
+            .whereEqualTo("userID", userId)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val result = task.result
+                    // 유저 정보가 이미 존재하는 경우
+                    if (result != null && !result.isEmpty) {
+                        Log.d("HOMEFIRESTORE : ", "getDataSuccess_exist")
+                        userInfoCheck = 1
+                    }
+                    // 유저 정보가 이미 존재하는 경우
+                    else {
+                        Log.d("HOMEFIRESTORE : ", "getDataSuccess_not exist")
+                        userInfoCheck = -1
+                    }
+                } else {
+                    // 쿼리 중에 예외가 발생한 경우
+                    Log.d("HOMEFIRESTORE : ", "Error getting documents.", task.exception)
+                    userInfoCheck = 0
+                }
+            }
+
+
+        // 질환 정보 클릭 로직
         for (i in diseaseChips.indices) {
             diseaseChips[i].setOnClickListener { view ->
                 val chip = view as Chip
@@ -86,7 +120,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                 }
             }
         }
-
+        // 알러지 정보 클릭 로직
         for (i in allergyChips.indices) {
             allergyChips[i].setOnClickListener { view ->
                 val chip = view as Chip
@@ -113,11 +147,9 @@ class UserInfoRegisterActivity : AppCompatActivity() {
             }
         }
 
-
-        val userIdClass = application as userId
-        val userId = userIdClass.userId
-
+        // 등록하기 버튼 클릭 시 로직
         userInfoRegisterButton.setOnClickListener {
+            // 나이 입력 X 시 토스트 메세지 띄움
             if(age.text.toString() == ""){
                 Toast.makeText(this@UserInfoRegisterActivity, "나이를 입력해주세요!", Toast.LENGTH_LONG).show()
             }
@@ -134,9 +166,9 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                 Log.d("LIST: ", userDiseaseList.toString())
                 Log.d("LIST: ", userAllergyList.toString())
 
+                //유저 정보 보내기
 
                 val db = Firebase.firestore
-                //유저 정보 보내기
                 val userInfo = hashMapOf(
                     "userID" to userId,
                     "userAge" to age.text.toString().toInt(),

@@ -18,52 +18,42 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        Log.d("HOMEFIRESTORE : ", "success0")
+
         // 파이어베이스 테스트용
         val userIdClass = application as userId
         val userId = userIdClass.userId
         if (userId != null) {
-            // 유저 정보 보내기
-            /*
-            val userInfo = hashMapOf(
-                "userID" to userId,
-                "userAge" to 60,
-                "userDisease" to listOf("diabetes"),
-                "userAllergic" to listOf("wheat", "soy")
-            )
-
-            db.collection("userInfo")
-                .add(userInfo)
-                .addOnSuccessListener { documentReference ->
-                    Log.d("FIRESTORE : ", "DocumentSnapshot added with ID: ${documentReference.id}")
-                }
-                .addOnFailureListener { e ->
-                    Log.w("FIRESTORE : ", "Error adding document", e)
-                }
-
-             */
-
             // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
             val db = Firebase.firestore
             // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
             db.collection("userInfo")
                 .whereEqualTo("userID", userId)
                 .get()
-                .addOnSuccessListener { result ->
-                    for (document in result) {
-                        Log.d("FIRESTORE : ", "getDataSuccess")
-                        userInfoCheck = 1
-
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val result = task.result
+                        // 유저 정보가 이미 존재하는 경우
+                        if (result != null && !result.isEmpty) {
+                            Log.d("HOMEFIRESTORE : ", "getDataSuccess_exist")
+                            userInfoCheck = 1
+                        }
+                        // 유저 정보가 이미 존재하는 경우
+                        else {
+                            Log.d("HOMEFIRESTORE : ", "getDataSuccess_not exist")
+                            userInfoCheck = -1
+                        }
+                    } else {
+                        // 쿼리 중에 예외가 발생한 경우
+                        Log.d("HOMEFIRESTORE : ", "Error getting documents.", task.exception)
+                        userInfoCheck = 0
                     }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w("FIRESTORE : ", "Error getting documents.", exception)
-                    userInfoCheck = -1
                 }
 
 
         }
         else {
-            Log.w("FIRESTORE : ", "Error getting documents.")
+            Log.d("HOMEFIRESTORE : ", "Error getting documents.")
             Toast.makeText(this@HomeActivity, "userId not exist", Toast.LENGTH_LONG).show()
         }
 
@@ -77,17 +67,18 @@ class HomeActivity : AppCompatActivity() {
         userInfoButton.setOnClickListener {
             if (userInfoCheck == 1) {
                 val intent = Intent(this, UserInfoActivity::class.java)
+                Log.d("HOMEFIRESTORE : ", "success_1")
                 //Toast.makeText(this@HomeActivity, "TRUE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
             }
             else if (userInfoCheck == -1){
                 val intent = Intent(this, UserInfoRegisterActivity::class.java)
+                Log.d("HOMEFIRESTORE : ", "success_-1")
                 //Toast.makeText(this@HomeActivity, "FALSE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
             }
             else {
-                Toast.makeText(this@HomeActivity, "network connection failed. try again", Toast.LENGTH_LONG).show()
-                Log.d("FIRESTORE : ", userInfoCheck.toString())
+                Log.d("HOMEFIRESTORE : ", "failure_0")
                 val intent = Intent(this, UserInfoRegisterActivity::class.java)
                 //Toast.makeText(this@HomeActivity, "FALSE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
