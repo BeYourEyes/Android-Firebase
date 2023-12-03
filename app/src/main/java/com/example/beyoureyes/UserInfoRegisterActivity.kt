@@ -11,6 +11,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.android.material.chip.Chip
 import android.content.Intent
+import java.io.Serializable
 
 
 val diseaseList : List<String> = listOf("고혈압", "고지혈증", "당뇨")
@@ -78,17 +79,17 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                     val result = task.result
                     // 유저 정보가 이미 존재하는 경우
                     if (result != null && !result.isEmpty) {
-                        Log.d("HOMEFIRESTORE : ", "getDataSuccess_exist")
+                        Log.d("REGISTERFIRESTORE : ", "getDataSuccess_exist")
                         userInfoCheck = 1
                     }
                     // 유저 정보가 이미 존재하는 경우
                     else {
-                        Log.d("HOMEFIRESTORE : ", "getDataSuccess_not exist")
+                        Log.d("REGISTERFIRESTORE : ", "getDataSuccess_not exist")
                         userInfoCheck = -1
                     }
                 } else {
                     // 쿼리 중에 예외가 발생한 경우
-                    Log.d("HOMEFIRESTORE : ", "Error getting documents.", task.exception)
+                    Log.d("REGISTERFIRESTORE : ", "Error getting documents.", task.exception)
                     userInfoCheck = 0
                 }
             }
@@ -153,11 +154,14 @@ class UserInfoRegisterActivity : AppCompatActivity() {
             if(age.text.toString() == ""){
                 Toast.makeText(this@UserInfoRegisterActivity, "나이를 입력해주세요!", Toast.LENGTH_LONG).show()
             }
+            // 나이 입력 O 시
             else {
+                // 질환 정보
                 for( index in clickedDisease.indices ) {
                     if(clickedDisease[index])
                         userDiseaseList.add(diseaseList[index])
                 }
+                // 알러지 정보
                 for ( index in clickedAllergic.indices ) {
                     if(clickedAllergic[index])
                         userAllergyList.add(allergyList[index])
@@ -166,32 +170,82 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                 Log.d("LIST: ", userDiseaseList.toString())
                 Log.d("LIST: ", userAllergyList.toString())
 
-                //유저 정보 보내기
+                // 기존 유저 정보가 있다면 삭제
+                if(userInfoCheck == 1) {
+                    Log.d("REGISTERFIRESTORE : ", "DELETE START")
+                    deleteData(userId!!, "userInfo") {
+                        // 삭제가 완료되면 이 블록이 실행됨
+                        // 여기에서 sendData 함수 호출
+                        val userInfo = hashMapOf(
+                            "userID" to userId,
+                            "userAge" to age.text.toString().toInt(),
+                            "userDisease" to userDiseaseList,
+                            "userAllergic" to userAllergyList
+                        )
+                        sendData(userInfo, "userInfo")
+                        userDiseaseList.clear()
+                        userAllergyList.clear()
 
-                val db = Firebase.firestore
-                val userInfo = hashMapOf(
-                    "userID" to userId,
-                    "userAge" to age.text.toString().toInt(),
-                    "userDisease" to userDiseaseList,
-                    "userAllergic" to userAllergyList
-                )
-
-                db.collection("userInfo")
-                    .add(userInfo)
-                    .addOnSuccessListener { documentReference ->
-                        Log.d("FIRESTORE : ", "DocumentSnapshot added with ID: ${documentReference.id}")
+                        val intent = Intent(this, UserInfoActivity::class.java)
+                        startActivity(intent)
                     }
-                    .addOnFailureListener { e ->
-                        Log.w("FIRESTORE : ", "Error adding document", e)
-                    }
-                userDiseaseList.clear()
-                userAllergyList.clear()
+                }
+                else {
+                    // 유저 정보가 없는 경우에는 바로 sendData 함수 호출
+                    val userInfo = hashMapOf(
+                        "userID" to userId!!,
+                        "userAge" to age.text.toString().toInt(),
+                        "userDisease" to userDiseaseList,
+                        "userAllergic" to userAllergyList
+                    )
+                    sendData(userInfo, "userInfo")
+                    userDiseaseList.clear()
+                    userAllergyList.clear()
 
-                val intent = Intent(this, UserInfoActivity::class.java)
-                startActivity(intent)
+                    val intent = Intent(this, UserInfoActivity::class.java)
+                    startActivity(intent)
+                }
 
             }
         }
 
     }
+
+
+    private fun sendData(userInfo : HashMap<String, Serializable>, collectionName : String){
+        val db = Firebase.firestore
+        db.collection(collectionName)
+            .add(userInfo)
+            .addOnSuccessListener { documentReference ->
+                Log.d("REGISTERFIRESTORE :", "SUCCESS added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w("REGISTERFIRESTORE :", "Error adding document", e)
+            }
+    }
+
+
+    private fun deleteData(userId: String, collectionName: String, onSuccess: () -> Unit) {
+        val firestore = Firebase.firestore
+        firestore.collection(collectionName)
+            .whereEqualTo("userID", userId)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                for (document in querySnapshot) {
+                    // 찾은 문서를 삭제
+                    firestore.collection(collectionName)
+                        .document(document.id)
+                        .delete()
+                        .addOnCompleteListener {
+                            Log.d("REGISTERFIRESTORE : ", "DELETE SUCCESS")
+                            // 삭제 완료 시 onSuccess 호출
+                            onSuccess()
+                        }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("REGISTERFIRESTORE : ", "Error deleting documents.", exception)
+            }
+    }
+
 }
