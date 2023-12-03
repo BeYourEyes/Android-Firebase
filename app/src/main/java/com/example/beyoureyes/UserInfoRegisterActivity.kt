@@ -11,6 +11,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.android.material.chip.Chip
 import android.content.Intent
+import android.widget.TextView
 import java.io.Serializable
 
 
@@ -28,6 +29,8 @@ class UserInfoRegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info_register)
+
+        val userInfoRegisterTitle = findViewById<TextView>(R.id.userInfoRegisterTitle)
 
         val age : EditText = findViewById(R.id.editAge)
 
@@ -80,9 +83,10 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                     // 유저 정보가 이미 존재하는 경우
                     if (result != null && !result.isEmpty) {
                         Log.d("REGISTERFIRESTORE : ", "getDataSuccess_exist")
+                        userInfoRegisterTitle.setText("내 정보 수정하기")
                         userInfoCheck = 1
                     }
-                    // 유저 정보가 이미 존재하는 경우
+                    // 유저 정보가 존재하지 않는 경우
                     else {
                         Log.d("REGISTERFIRESTORE : ", "getDataSuccess_not exist")
                         userInfoCheck = -1
