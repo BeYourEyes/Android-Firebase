@@ -60,7 +60,8 @@ class UserInfoRegisterActivity : AppCompatActivity() {
         val chip19 = findViewById<Chip>(R.id.chip2_19)
         val chip20 = findViewById<Chip>(R.id.chip2_20)
 
-        val userInfoRegisterButton = findViewById<Button>(R.id.userInfoRegisterButton)
+        val usrInfoRegiSaveButton = findViewById<Button>(R.id.usrInfoRegiSaveButton)
+        val usrInfoRegiCancelButton = findViewById<Button>(R.id.usrInfoRegiCancelButton)
 
         val diseaseChips = arrayOf(chip0, chip1, chip2)
         val allergyChips = arrayOf(chip00, chip01, chip02, chip03, chip04, chip05, chip06, chip07,
@@ -153,7 +154,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
         }
 
         // 등록하기 버튼 클릭 시 로직
-        userInfoRegisterButton.setOnClickListener {
+        usrInfoRegiSaveButton.setOnClickListener {
             // 나이 입력 X 시 토스트 메세지 띄움
             if(age.text.toString() == ""){
                 Toast.makeText(this@UserInfoRegisterActivity, "나이를 입력해주세요!", Toast.LENGTH_LONG).show()
