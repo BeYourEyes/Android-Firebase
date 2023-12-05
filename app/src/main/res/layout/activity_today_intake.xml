@@ -147,11 +147,11 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/pretendard700"/>
 
-            <com.github.mikephil.charting.charts.BarChart
+            <com.github.mikephil.charting.charts.HorizontalBarChart
                 android:id="@+id/carboBarchart"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -162,7 +162,7 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/pretendard700"/>
 
-            <com.github.mikephil.charting.charts.BarChart
+            <com.github.mikephil.charting.charts.HorizontalBarChart
                 android:id="@+id/fatBarchart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -177,8 +177,8 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/pretendard700"/>
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/proteinBarchart"
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:id="@+id/proBarchart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
@@ -192,8 +192,8 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/pretendard700"/>
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/sodiumBarchart"
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:id="@+id/naBarchart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
@@ -207,8 +207,8 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/pretendard700"/>
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/cholesterolBarchart"
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:id="@+id/choleBarchart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />

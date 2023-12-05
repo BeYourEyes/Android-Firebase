@@ -1,17 +1,22 @@
 package com.example.beyoureyes
 
+import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+
 
 class HomeActivity : AppCompatActivity() {
 
     private var userInfoCheck : Int = 0;
+    // onBackPressed
+    private var time: Long = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,4 +101,35 @@ class HomeActivity : AppCompatActivity() {
         }
 
     }
+
+
+    // Back Button 클릭 시 종료
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - time >= 2000) {
+            time = System.currentTimeMillis()
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this@HomeActivity)
+            builder.setTitle("종료")
+            builder.setMessage("앱을 종료하시겠어요?")
+            builder.setPositiveButton("네",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    try {
+                        // finish 후 다른 Activity 뜨지 않도록 함
+                        moveTaskToBack(true)
+                        // 현재 액티비티 종료
+                        finish()
+                        // 모든 루트 액티비티 종료
+                        finishAffinity()
+                        // 인텐트 애니 종료
+                        overridePendingTransition(0, 0)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                })
+            builder.setNegativeButton("아니요",
+                DialogInterface.OnClickListener { dialogInterface, i -> return@OnClickListener })
+            builder.show()
+        }
+    } //onBackPressed
+
+
 }
