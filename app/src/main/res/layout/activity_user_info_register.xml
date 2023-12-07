@@ -15,12 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8sp"
-        android:fontFamily="@font/pretendard800"
         android:text="@string/userInfoRegister"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="36sp"
-        android:textStyle="bold" />
+        style="@style/title2"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,10 +34,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34sp"
-                android:fontFamily="@font/pretendard700"
                 android:text="나이"
                 android:textColor="@color/black"
-                android:textSize="24sp" />
+                style="@style/title3" />
 
             <EditText
                 android:id="@+id/editAge"
@@ -55,14 +52,22 @@
                 android:textSize="24sp" />
 
             <TextView
+                android:id="@+id/sexText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34sp"
+                android:text="성별"
+                android:textColor="@color/black"
+                style="@style/title3"/>
+
+            <TextView
                 android:id="@+id/diseaseText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12sp"
-                android:fontFamily="@font/pretendard700"
                 android:text="질환 정보"
                 android:textColor="@color/black"
-                android:textSize="24sp" />
+                style="@style/title3"/>
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/diseaseChipGroup"
@@ -106,10 +111,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12sp"
-                android:fontFamily="@font/pretendard700"
                 android:text="알레르기 정보"
                 android:textColor="@color/black"
-                android:textSize="24sp" />
+                style="@style/title3" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/allergyChipGroup"

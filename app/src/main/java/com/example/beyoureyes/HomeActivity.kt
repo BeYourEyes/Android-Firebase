@@ -2,9 +2,13 @@ package com.example.beyoureyes
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -94,42 +98,98 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, FilmCautionActivity::class.java)
             startActivity(intent)
         }
-        
+
         todayIntakeButton.setOnClickListener {
             val intent = Intent(this, TodayIntakeActivity::class.java)
             startActivity(intent)
         }
 
+        exitButton.setOnClickListener{
+            val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_default, null)
+
+            val builder = AlertDialog.Builder(this@HomeActivity)
+            builder.setView(dialogView)
+
+            val alertDialog = builder.create()
+
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            val yesButton = dialogView.findViewById<Button>(R.id.rightBtn)
+            val noButton = dialogView.findViewById<Button>(R.id.leftBtn)
+            val title = dialogView.findViewById<TextView>(R.id.title)
+            val text = dialogView.findViewById<TextView>(R.id.text)
+            title.setText("어플리케이션 종료")
+            text.setText("어플리케이션을 종료하시겠어요?")
+
+            yesButton.setOnClickListener {
+                try {
+                    // finish 후 다른 Activity 뜨지 않도록 함
+                    moveTaskToBack(true)
+                    // 현재 액티비티 종료
+                    finish()
+                    // 모든 루트 액티비티 종료
+                    finishAffinity()
+                    // 인텐트 애니메이션 종료
+                    overridePendingTransition(0, 0)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+                alertDialog.dismiss()
+            }
+
+            noButton.setOnClickListener {
+                alertDialog.dismiss()
+            }
+
+            alertDialog.show()
+        }
+
     }
 
 
-    // Back Button 클릭 시 종료
     override fun onBackPressed() {
         if (System.currentTimeMillis() - time >= 2000) {
             time = System.currentTimeMillis()
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this@HomeActivity)
-            builder.setTitle("종료")
-            builder.setMessage("앱을 종료하시겠어요?")
-            builder.setPositiveButton("네",
-                DialogInterface.OnClickListener { dialogInterface, i ->
-                    try {
-                        // finish 후 다른 Activity 뜨지 않도록 함
-                        moveTaskToBack(true)
-                        // 현재 액티비티 종료
-                        finish()
-                        // 모든 루트 액티비티 종료
-                        finishAffinity()
-                        // 인텐트 애니 종료
-                        overridePendingTransition(0, 0)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                })
-            builder.setNegativeButton("아니요",
-                DialogInterface.OnClickListener { dialogInterface, i -> return@OnClickListener })
-            builder.show()
+
+            val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_default, null)
+
+            val builder = AlertDialog.Builder(this@HomeActivity)
+            builder.setView(dialogView)
+
+            val alertDialog = builder.create()
+
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            val yesButton = dialogView.findViewById<Button>(R.id.rightBtn)
+            val noButton = dialogView.findViewById<Button>(R.id.leftBtn)
+            val title = dialogView.findViewById<TextView>(R.id.title)
+            val text = dialogView.findViewById<TextView>(R.id.text)
+            title.setText("어플리케이션 종료")
+            text.setText("어플리케이션을 종료하시겠어요?")
+
+            yesButton.setOnClickListener {
+                try {
+                    // finish 후 다른 Activity 뜨지 않도록 함
+                    moveTaskToBack(true)
+                    // 현재 액티비티 종료
+                    finish()
+                    // 모든 루트 액티비티 종료
+                    finishAffinity()
+                    // 인텐트 애니메이션 종료
+                    overridePendingTransition(0, 0)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+                alertDialog.dismiss()
+            }
+
+            noButton.setOnClickListener {
+                alertDialog.dismiss()
+            }
+
+            alertDialog.show()
         }
-    } //onBackPressed
+    }
 
 
 }

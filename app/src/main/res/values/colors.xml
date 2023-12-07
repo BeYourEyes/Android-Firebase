@@ -11,4 +11,5 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="highlight">#FF0000</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
