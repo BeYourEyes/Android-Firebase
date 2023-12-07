@@ -2,15 +2,14 @@
 <androidx.appcompat.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/customToolbar"
+    android:id="@+id/toolbarDefault"
     android:layout_width="match_parent"
     android:layout_height="72sp"
-    android:background="@color/transparent"
-    app:navigationIcon="null">
+    android:background="@color/transparent">
 
     <!-- 뒤로가기 버튼 -->
     <ImageButton
-        android:id="@+id/btnBack"
+        android:id="@+id/toolbarBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/arrow_back"
@@ -25,7 +24,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="내 정보 수정하기"
+        android:text="제목입니다"
         android:textColor="@color/black"
         style="@style/title2"/>
 

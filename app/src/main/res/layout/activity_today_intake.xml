@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/pretendard800"
-        android:text="영양 정보 촬영하기"
+        android:text="영양 정보 확인하기"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="36sp" />

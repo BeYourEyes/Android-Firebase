@@ -2,6 +2,7 @@ package com.example.beyoureyes
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -11,6 +12,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.android.material.chip.Chip
 import android.content.Intent
+import android.widget.ImageButton
 import android.widget.TextView
 import java.io.Serializable
 
@@ -29,8 +31,9 @@ class UserInfoRegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info_register)
+        overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)
 
-        val userInfoRegisterTitle = findViewById<TextView>(R.id.userInfoRegisterTitle)
+        //val userInfoRegisterTitle = findViewById<TextView>(R.id.userInfoRegisterTitle)
 
         val age : EditText = findViewById(R.id.editAge)
 
@@ -63,6 +66,20 @@ class UserInfoRegisterActivity : AppCompatActivity() {
         val usrInfoRegiSaveButton = findViewById<Button>(R.id.usrInfoRegiSaveButton)
         val usrInfoRegiCancelButton = findViewById<Button>(R.id.usrInfoRegiCancelButton)
 
+        //toolBar
+        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
+        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
+        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
+        setSupportActionBar(toolBar)
+        //Toolbar에 앱 이름 표시 제거!!
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        toolbarBackButton.setOnClickListener {
+            onBackPressed()
+            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
+        }
+
+
         val diseaseChips = arrayOf(chip0, chip1, chip2)
         val allergyChips = arrayOf(chip00, chip01, chip02, chip03, chip04, chip05, chip06, chip07,
                                     chip08, chip09, chip10, chip11, chip12, chip13, chip14, chip15,
@@ -84,17 +101,20 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                     // 유저 정보가 이미 존재하는 경우
                     if (result != null && !result.isEmpty) {
                         Log.d("REGISTERFIRESTORE : ", "getDataSuccess_exist")
-                        userInfoRegisterTitle.setText("내 정보 수정하기")
+                        toolbarTitle.setText("내 정보 수정하기")
+                        //userInfoRegisterTitle.setText("내 정보 수정하기")
                         userInfoCheck = 1
                     }
                     // 유저 정보가 존재하지 않는 경우
                     else {
                         Log.d("REGISTERFIRESTORE : ", "getDataSuccess_not exist")
+                        toolbarTitle.setText("내 정보 등록하기")
                         userInfoCheck = -1
                     }
                 } else {
                     // 쿼리 중에 예외가 발생한 경우
                     Log.d("REGISTERFIRESTORE : ", "Error getting documents.", task.exception)
+                    toolbarTitle.setText("내 정보 등록하기")
                     userInfoCheck = 0
                 }
             }

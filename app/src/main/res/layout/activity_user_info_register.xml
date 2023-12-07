@@ -6,23 +6,17 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:padding="32sp"
     android:textAlignment="center"
     tools:context=".UserInfoRegisterActivity">
 
-    <TextView
-        android:id="@+id/userInfoRegisterTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8sp"
-        android:text="@string/userInfoRegister"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        style="@style/title2"/>
+    <include layout="@layout/toolbar_dafault" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="36sp"
+        android:paddingRight="36sp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +27,6 @@
                 android:id="@+id/ageText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="34sp"
                 android:text="나이"
                 android:textColor="@color/black"
                 style="@style/title3" />
@@ -322,7 +315,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="16sp"
+        android:layout_marginLeft="16sp"
+        android:layout_marginRight="16sp">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usrInfoRegiCancelButton"
