@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/layoutDialog"
+    android:paddingTop="15dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="10dp"
+    android:background="@drawable/alert_dialog_shape"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/alertDialog_background"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@drawable/alert_dialog_shape"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/alert_dialog_shape"
+            android:fontFamily="@font/pretendard900"
+            android:paddingBottom="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:text="제목"
+            android:textSize="32dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/textContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:fontFamily="@font/pretendard700"
+            android:padding="10dp"
+            android:text="본문"
+            android:textColor="@color/black"
+            android:textSize="24dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/pretendard800"
+            android:background="@color/transparent"
+            android:text="취소"
+            android:textColor="@color/black"
+            android:textSize="32sp"/>
+
+        <Button
+            android:id="@+id/book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/pretendard800"
+            android:background="@color/transparent"
+            android:text="확인"
+            android:textColor="@color/black"
+            android:textSize="32sp"/>
+    </LinearLayout>
+
+</LinearLayout>
