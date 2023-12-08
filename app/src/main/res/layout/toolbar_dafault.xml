@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbarDefault"
     android:layout_width="match_parent"
@@ -12,20 +11,20 @@
         android:id="@+id/toolbarBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/arrow_back"
         android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="뒤로가기"
         android:padding="10dp"
-        android:contentDescription="뒤로가기" />
+        android:src="@drawable/arrow_back" />
 
     <!-- 제목 -->
     <TextView
         android:id="@+id/toolbarTitle"
+        style="@style/title2"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
         android:text="제목입니다"
-        android:textColor="@color/black"
-        style="@style/title2"/>
+        android:textColor="@color/black" />
 
 </androidx.appcompat.widget.Toolbar>

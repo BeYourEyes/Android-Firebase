@@ -13,7 +13,7 @@
   <ScrollView
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_marginTop="32sp"
+      android:padding="24sp"
       android:layout_weight="1">
 
     <LinearLayout
@@ -27,13 +27,34 @@
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:layout_marginTop="34sp"
-          android:fontFamily="@font/pretendard700"
           android:text="나이"
           android:textColor="@color/black"
-          android:textSize="24sp" />
+          style="@style/title3"/>
 
       <TextView
           android:id="@+id/infoAge"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="12sp"
+          android:minHeight="48dp"
+          android:textAlignment="center"
+          android:text="OO세"
+          android:textColor="@color/black"
+          style="@style/title2"/>
+
+      <TextView
+          android:id="@+id/sexText"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="34sp"
+          android:text="성별"
+          android:textColor="@color/black"
+          style="@style/title3"/>
+
+      <TextView
+          android:id="@+id/infoSex"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
@@ -44,16 +65,16 @@
           android:textColor="@color/black"
           android:textSize="24sp" />
 
+
       <TextView
           android:id="@+id/diseaseText"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:layout_marginTop="12sp"
-          android:fontFamily="@font/pretendard700"
           android:text="질환 정보"
           android:textColor="@color/black"
-          android:textSize="24sp" />
+          style="@style/title3" />
 
       <com.google.android.material.chip.ChipGroup
           android:id="@+id/diseaseChipGroup"
@@ -62,7 +83,8 @@
           android:layout_gravity="center"
           android:layout_marginTop="12sp"
           app:chipSpacingHorizontal="12dp"
-          app:singleLine="true">
+          app:singleLine="true"
+          style="@style/title3">
 
       </com.google.android.material.chip.ChipGroup>
 
@@ -72,10 +94,9 @@
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:layout_marginTop="12sp"
-          android:fontFamily="@font/pretendard700"
           android:text="알레르기 정보"
           android:textColor="@color/black"
-          android:textSize="24sp" />
+          style="@style/title3" />
 
       <com.google.android.material.chip.ChipGroup
           android:id="@+id/allergyChipGroup"
@@ -84,7 +105,8 @@
           android:layout_gravity="center"
           android:layout_marginTop="12sp"
           app:chipSpacingHorizontal="12dp"
-          app:singleLine="false">
+          app:singleLine="false"
+          style="@style/title3">
 
       </com.google.android.material.chip.ChipGroup>
 

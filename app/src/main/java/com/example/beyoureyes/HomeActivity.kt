@@ -1,17 +1,19 @@
 package com.example.beyoureyes
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.MotionLayout
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -28,6 +30,16 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         Log.d("HOMEFIRESTORE : ", "success0")
+
+        // 화면 크기 가져오기
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val screenHeight = displayMetrics.heightPixels
+
+        // 원하는 비율에 따라 padding 조절
+        val motionLayout = findViewById<MotionLayout>(R.id.home_motionLayout)
+        val desiredPadding = calculateDesiredPadding(screenHeight)
+        motionLayout.setPadding(48, desiredPadding, 48, desiredPadding)
 
         // 파이어베이스 테스트용
         val userIdClass = application as userId
@@ -67,10 +79,10 @@ class HomeActivity : AppCompatActivity() {
         }
 
 
-        val filmButton : Button = findViewById(R.id.filmButton)
-        val todayIntakeButton : Button = findViewById(R.id.todayNutritionButton)
-        val exitButton : Button = findViewById(R.id.exitButton)
-        val userInfoButton : Button = findViewById(R.id.myProfileButton)
+        val filmButton : ImageView = findViewById(R.id.filmButton)
+        val todayIntakeButton : ImageView = findViewById(R.id.todayNutritionButton)
+        val exitButton : ImageView = findViewById(R.id.exitButton)
+        val userInfoButton : ImageView = findViewById(R.id.myProfileButton)
 
         // 내 질환정보 수정하기 클릭 시...정보가 없으면 정보 등록 페이지로 넘어가도록 함
         userInfoButton.setOnClickListener {
@@ -95,12 +107,12 @@ class HomeActivity : AppCompatActivity() {
         }
 
         filmButton.setOnClickListener {
-            val intent = Intent(this, FilmCautionActivity::class.java)
+            val intent = Intent(this, FoodInfoAllActivity::class.java)
             startActivity(intent)
         }
 
         todayIntakeButton.setOnClickListener {
-            val intent = Intent(this, TodayIntakeActivity::class.java)
+            val intent = Intent(this, TodayIntakePersonalizedActivity::class.java)
             startActivity(intent)
         }
 
@@ -145,6 +157,12 @@ class HomeActivity : AppCompatActivity() {
         }
 
     }
+    // 화면의 비율 구하기
+    private fun calculateDesiredPadding(screenHeight: Int): Int {
+        // 원하는 비율에 따라 계산된 padding 값을 반환
+        // 예: 세로 길이의 10%를 padding으로 사용하려면 screenHeight * 0.1을 반환
+        return (screenHeight * 0.1).toInt()
+    }
 
 
     override fun onBackPressed() {
@@ -165,7 +183,7 @@ class HomeActivity : AppCompatActivity() {
             val title = dialogView.findViewById<TextView>(R.id.title)
             val text = dialogView.findViewById<TextView>(R.id.text)
             title.setText("어플리케이션 종료")
-            text.setText("어플리케이션을 종료하시겠어요?")
+            text.setText("어플리케이션을\n종료하시겠어요?")
 
             yesButton.setOnClickListener {
                 try {
