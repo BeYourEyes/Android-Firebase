@@ -30,11 +30,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "18"
     }
 }
 
@@ -64,5 +64,21 @@ dependencies {
 
     //MPAndroidChart
     implementation("com.github.PhilJay:MpAndroidChart:v3.1.0")
+
+    //openCV
+    implementation(project(":opencv"))
+
+    implementation ("com.google.android.gms:play-services-mlkit-text-recognition-common:17.0.0")
+    implementation ("com.google.android.material:material:1.6.0")
+    implementation ("com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.0")
+
+
+    implementation ("androidx.camera:camera-core:1.2.0-alpha01")
+    implementation ("androidx.camera:camera-camera2:1.2.0-alpha01")
+    implementation ("androidx.camera:camera-lifecycle:1.2.0-alpha01")
+    implementation ("androidx.camera:camera-video:1.2.0-alpha01")
+    implementation ("androidx.camera:camera-view:1.2.0-alpha01")
+    implementation ("androidx.camera:camera-extensions:1.2.0-alpha01")
+
 
 }

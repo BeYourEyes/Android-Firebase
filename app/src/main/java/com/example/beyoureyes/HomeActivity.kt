@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.opencv.android.OpenCVLoader
 
 
 class HomeActivity : AppCompatActivity() {
@@ -28,6 +29,9 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        //openCV
+        OpenCVLoader.initDebug()
 
         Log.d("HOMEFIRESTORE : ", "success0")
 
@@ -107,12 +111,12 @@ class HomeActivity : AppCompatActivity() {
         }
 
         filmButton.setOnClickListener {
-            val intent = Intent(this, FoodInfoAllActivity::class.java)
+            val intent = Intent(this, CameraFirstActivity::class.java)
             startActivity(intent)
         }
 
         todayIntakeButton.setOnClickListener {
-            val intent = Intent(this, TodayIntakePersonalizedActivity::class.java)
+            val intent = Intent(this, TodayIntakeActivity::class.java)
             startActivity(intent)
         }
 
